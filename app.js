@@ -1,5 +1,8 @@
 // Required Libraries
 const express = require("express");
+const app = express();
+const server = require("http").Server(app);
+global.io = require("socket.io")(server);
 const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
@@ -7,10 +10,10 @@ require("dotenv").config();
 // require mongoDB
 require("./config/db.js");
 require("./config/multer.js");
+require("./config/sockets.js");
 
 //Initialize express server and port
-const app = express();
-app.listen(process.env.PORT);
+server.listen(process.env.PORT);
 app.use(express.static('public'));
 app.use("/uploads", express.static('photo'));
 
