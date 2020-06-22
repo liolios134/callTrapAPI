@@ -13,8 +13,9 @@ const userSchema = mongoose.Schema({
     password : {type: String,required: true, bcrypt: true},
     gender: { type: mongoose.Types.ObjectId,
               ref: "Gender"},
-    phones: [mongoose.Schema.Types.Mixed],
-    photo: {type:String}
+    phones: {type: Number},
+    photo: {type:String},
+    role:{type: String, required: true, default: "admin", enum: ["client", "admin", "superUser"]}
 },
 {
     timestamps:true
@@ -36,20 +37,10 @@ const genderSchema = mongoose.Schema({
 );
 global.Gender = mongoose.model("Gender", genderSchema);
 
-const phoneSchema = mongoose.Schema({
-    phone: Number,
-    Name: String
-},
-{
-    _id: false,
-    timestamps: false
-});
-global.Phones = mongoose.model("Phones", phoneSchema);
-
 const clientSchema = mongoose.Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
-    phones: [phoneSchema],
+    phones: {type: Number},
     notes: {type: String}
 },
 {
