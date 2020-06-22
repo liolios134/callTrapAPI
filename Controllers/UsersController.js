@@ -26,6 +26,7 @@ const create = (req, res) => {
     });
     p.save().then(() => {
         res.json({
+            success: true,
             message: "New user added"
         });
     }).catch((err) => {
