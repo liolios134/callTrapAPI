@@ -5,7 +5,7 @@ const UploadController = require("../controllers/UploadController");
 
 route.use("/admin", require("./admin/admin"));
 
-route.post("/upload", upload.single("avatar"), UploadController.uploadPhoto);
+
 
 route.use((req, res) => {
     return res.json({

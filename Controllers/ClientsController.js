@@ -15,19 +15,21 @@ const getOne = (req, res) => {
 
 
 const create = (req, res) => {
-    const c = new Client({
+    const p = new Client ({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        phones: req.body.phones,
-        notes: req.body.notes
+        notes: req.body.notes,
+        gender: req.body.gender,
+        phones: req.body.phones
     });
     p.save().then(() => {
         res.json({
-            message: "New client added"
+            success: true,
+            message: "New Client added"
         });
     }).catch((err) => {
         res.json({
-            message: "New client not added",
+            message: "New Client not added",
             error: err
         });
     });
@@ -46,6 +48,7 @@ const updateClient = (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         phones: req.body.phones,
+        gender: req.body.gender,
         notes: req.body.notes
     }, (err) => {
         res.json({
@@ -54,7 +57,12 @@ const updateClient = (req, res) => {
     });
 };
 
+const getGenderClient = async (req , res) => {
 
+    const clients = await Product.find({gender: req.params.genderId}, (err, clients) => {
+        res.json(clients);
+    });
+};
 
 
 module.exports = {
@@ -62,5 +70,6 @@ module.exports = {
     getOne,
     create,
     deleteClient,
-    updateClient
+    updateClient,
+    getGenderClient
 };

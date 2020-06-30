@@ -41,6 +41,8 @@ const clientSchema = mongoose.Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     phones: {type: Number},
+    gender: { type: mongoose.Types.ObjectId,
+              ref: "Gender"},
     notes: {type: String}
 },
 {

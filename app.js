@@ -15,7 +15,7 @@ require("./config/sockets.js");
 //Initialize express server and port
 server.listen(process.env.PORT);
 app.use(express.static('public'));
-app.use("/uploads", express.static('photo'));
+app.use("/upload", express.static('photo'));
 
 app.use(cors());
 // parse application/x-www-form-urlencoded
